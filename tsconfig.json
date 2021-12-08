@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "strictNullChecks": true,
+    "declaration": true,
+    "declarationDir": "dist/typings",
+    "module": "esnext",
+    "target": "es6",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
