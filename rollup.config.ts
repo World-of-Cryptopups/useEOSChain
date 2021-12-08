@@ -50,5 +50,5 @@ export default {
     analyze(),
     sourceMaps()
   ],
-  external: ['react']
+  external: ['react', 'cross-fetch', 'cross-fetch/polyfill']
 }

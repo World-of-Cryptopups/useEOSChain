@@ -1,6 +1,6 @@
 {
-  "name": "react-library-template",
-  "version": "1.0.0",
+  "name": "@cryptopuppie/useeoschain",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cross-fetch": "^3.1.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
