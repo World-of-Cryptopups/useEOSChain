@@ -20,3 +20,9 @@ export interface FetchTableRowsResponseProps<T = unknown> {
   next_key: string
   next_key_bytes: string
 }
+
+export interface CurrencyBalanceProps {
+  code: string
+  account: string
+  symbol?: string
+}
