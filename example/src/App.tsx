@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from './logo.svg'
 import './App.css'
-import { HelloComponent } from 'react-library-template'
+import GetChainComponent from './Component/GetChain'
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           Learn React
         </a>
 
-        <HelloComponent />
+        <GetChainComponent />
       </header>
     </div>
   )
