@@ -1,7 +1,7 @@
 {
   "name": "@cryptopuppie/useeoschain",
   "version": "0.0.1",
-  "description": "",
+  "description": "Fetch data from EOS Chain API using React hooks.",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "unpkg": "dist/index.umd.js",
