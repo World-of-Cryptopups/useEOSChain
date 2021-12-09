@@ -17,7 +17,8 @@
     "plugin:react/recommended",
     "standard-with-typescript",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "plugin:react/jsx-runtime"
   ],
   "plugins": ["react", "import", "prettier", "@typescript-eslint"],
   "rules": {

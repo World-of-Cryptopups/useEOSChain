@@ -1,3 +1,4 @@
-import HelloComponent from './component/simple'
+import UseEOSProvider from './component/provider'
+import useGetTableRows from './hooks/useGetTableRows'
 
-export { HelloComponent }
+export { UseEOSProvider, useGetTableRows }

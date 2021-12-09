@@ -7,7 +7,7 @@
     "declarationDir": "dist/typings",
     "module": "esnext",
     "target": "es6",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",

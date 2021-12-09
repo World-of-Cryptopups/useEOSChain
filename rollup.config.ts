@@ -25,11 +25,12 @@ export default {
       sourcemap: true
     },
     {
-      name: 'ReactLibraryStarter',
+      name: 'UseEOSChain',
       file: packageJson.unpkg,
       format: 'umd',
       globals: {
-        react: 'React'
+        react: 'React',
+        'cross-fetch': 'fetch'
       }
     }
   ],
@@ -50,5 +51,5 @@ export default {
     analyze(),
     sourceMaps()
   ],
-  external: ['react', 'cross-fetch', 'cross-fetch/polyfill']
+  external: ['react', 'cross-fetch', 'url-join']
 }

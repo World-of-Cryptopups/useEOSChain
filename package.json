@@ -6,13 +6,16 @@
   "module": "dist/index.modern.js",
   "unpkg": "dist/index.umd.js",
   "types": "dist/typings/index.d.ts",
+  "exports": {
+    "./*": "./*"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "huskyinstall": "husky install",
     "precommit": "lint-staged",
-    "pack": "npm run build && npm pack",
+    "prepack": "npm run build",
     "prepublishOnly": "npm run build",
     "build": "cross-env NODE_ENV=production && rm -rf dist && rollup -c"
   },
@@ -22,7 +25,9 @@
   "dependencies": {
     "cross-fetch": "^3.1.4",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "swr": "^1.1.0",
+    "url-join": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -34,6 +39,7 @@
     "@types/react-dom": "^17.0.10",
     "@types/rollup-plugin-json": "^3.0.3",
     "@types/rollup-plugin-peer-deps-external": "^2.2.1",
+    "@types/url-join": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "babel-loader": "^8.2.2",
