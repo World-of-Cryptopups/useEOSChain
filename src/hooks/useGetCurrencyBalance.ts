@@ -12,9 +12,11 @@ import { CurrencyBalanceProps } from '../typings/rpc'
  * @returns string[] | null | undefined
  */
 const useGetCurrencyBalance = (
-  props: CurrencyBalanceProps,
+  props?: CurrencyBalanceProps,
   endpoint?: string
 ) => {
+  if (props == null) return
+
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 

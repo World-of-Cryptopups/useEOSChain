@@ -12,9 +12,11 @@ import { FetchTableRowsResponseProps, TableRowsProps } from '../typings/rpc'
  * @returns T
  */
 const useGetTableRows = <T>(
-  props: TableRowsProps,
+  props?: TableRowsProps,
   endpoint?: string
 ): FetchTableRowsResponseProps<T> | null | undefined => {
+  if (props == null) return
+
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 
