@@ -2,7 +2,8 @@ import useSWR from 'swr'
 import urljoin from 'url-join'
 import { useEOS } from '../component/provider'
 import chainFetcher from '../lib/fetcher'
-import { FetchTableRowsResponseProps, TableRowsProps } from '../typings/rpc'
+import { TableRowsProps } from '../typings/request'
+import { FetchTableRowsResponseProps } from '../typings/rpc'
 
 /**
  * Fetches the rows from the specified table.

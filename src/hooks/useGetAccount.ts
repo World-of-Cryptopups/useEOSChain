@@ -2,19 +2,16 @@ import useSWR from 'swr'
 import urljoin from 'url-join'
 import { useEOS } from '../component/provider'
 import chainFetcher from '../lib/fetcher'
-import { CurrencyBalanceProps } from '../typings/request'
+import { AccountNameProps } from '../typings/request'
 
 /**
- * Retrieve an account's current balance.
+ * Fetch an account's info.
  *
- * @param props `get_currency_balance` props.
+ * @param props `get_account` props.
  * @param endpoint RPC Endpoint api.
  * @returns string[] | null | undefined
  */
-const useGetCurrencyBalance = (
-  props?: CurrencyBalanceProps,
-  endpoint?: string
-) => {
+const useGetAccount = (props?: AccountNameProps, endpoint?: string) => {
   if (props == null) return
 
   const { endpoint: _endpoint } = useEOS()
@@ -24,11 +21,11 @@ const useGetCurrencyBalance = (
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
 
   const { data } = useSWR<string[] | null>(
-    urljoin(endpoint, '/v1/chain/get_currency_balance'),
+    urljoin(endpoint, '/v1/chain/get_account'),
     async (url) => await chainFetcher(url, props)
   )
 
   return data
 }
 
-export default useGetCurrencyBalance
+export default useGetAccount
