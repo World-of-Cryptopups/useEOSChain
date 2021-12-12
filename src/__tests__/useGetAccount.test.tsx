@@ -18,6 +18,6 @@ describe('useGetAccount', () => {
     await waitForNextUpdate({ timeout: 5000 })
 
     expect(result.current != null) // check if null
-    expect((result.current?.length ?? 0) === 1) // should only be one since limit is defined
+    expect(result.current?.account_name === 'eosio') // should only be one since limit is defined
   })
 })
