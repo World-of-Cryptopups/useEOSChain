@@ -22,8 +22,8 @@ const useGetAccount = (props?: AccountNameProps, endpoint?: string) => {
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
 
   const { data } = useSWR<FetchAccountResponseProps | null>(
-    urljoin(endpoint, '/v1/chain/get_account'),
-    async (url) => await chainFetcher(url, props)
+    [urljoin(endpoint, '/v1/chain/get_account'), props],
+    chainFetcher
   )
 
   return data

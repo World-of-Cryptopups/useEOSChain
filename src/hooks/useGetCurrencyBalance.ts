@@ -24,8 +24,8 @@ const useGetCurrencyBalance = (
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
 
   const { data } = useSWR<string[] | null>(
-    urljoin(endpoint, '/v1/chain/get_currency_balance'),
-    async (url) => await chainFetcher(url, props)
+    [urljoin(endpoint, '/v1/chain/get_currency_balance'), props],
+    chainFetcher
   )
 
   return data

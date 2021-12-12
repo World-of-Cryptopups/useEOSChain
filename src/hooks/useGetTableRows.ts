@@ -37,8 +37,8 @@ const useGetTableRows = <T>(
   }
 
   const { data } = useSWR<FetchTableRowsResponseProps<T>>(
-    urljoin(endpoint, '/v1/chain/get_table_rows'),
-    async (url) => await chainFetcher(url, body)
+    [urljoin(endpoint, '/v1/chain/get_table_rows'), body],
+    chainFetcher
   )
 
   return data
