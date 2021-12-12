@@ -7,3 +7,5 @@ dist
 *.env
 
 example/package-lock.json
+
+coverage
