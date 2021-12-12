@@ -16,13 +16,14 @@ const useGetTableRows = <T>(
   props?: TableRowsProps,
   endpoint?: string
 ): FetchTableRowsResponseProps<T> | null | undefined => {
-  if (props == null) return
-
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 
   // throw error if no endpoint set
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
+
+  // if props is null / undefined, do not continue
+  if (props == null) return
 
   const body: TableRowsProps = {
     json: true,

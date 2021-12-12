@@ -13,13 +13,14 @@ import { FetchAccountResponseProps } from '../typings/rpc'
  * @returns FetchAccountResponseProps | null | undefined
  */
 const useGetAccount = (props?: AccountNameProps, endpoint?: string) => {
-  if (props == null) return
-
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 
   // throw error if no endpoint set
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
+
+  // if props is null / undefined, do not continue
+  if (props == null) return
 
   const { data } = useSWR<FetchAccountResponseProps | null>(
     [urljoin(endpoint, '/v1/chain/get_account'), props],
