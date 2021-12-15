@@ -5,9 +5,15 @@
 .lintstagedrc.json
 *.config.ts
 tsconfig.json
+.prettierrc
+*.config.js
 
 *.tgz
 
 node_modules
 example
 src
+coverage
+
+.github
+.vscode
