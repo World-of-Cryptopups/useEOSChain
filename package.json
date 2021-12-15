@@ -1,14 +1,20 @@
 {
   "name": "@cryptopuppie/useeoschain",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Fetch data from EOS Chain API using React hooks.",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "unpkg": "dist/index.umd.js",
-  "types": "dist/typings/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.modern.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./dist/typings/index.d.ts",
   "exports": {
-    "./*": "./*"
+    ".": {
+      "import": "./dist/index.modern.js",
+      "require": "./dist/index.js",
+      "types": "./dist/typings/index.d.ts"
+    }
   },
+  "homepage": "https://github.com/World-of-Cryptopups/useEOSChain",
+  "repository": "World-of-Cryptopups/useEOSChain",
   "scripts": {
     "test": "jest",
     "test:ci": "jest --ci --coverage --silent",
