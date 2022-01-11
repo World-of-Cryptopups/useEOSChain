@@ -21,7 +21,7 @@ const useGetCurrencyBalance = (
   // throw error if no endpoint set
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
 
-  const { data } = useSWR<string[] | null>(
+  const { data } = useSWR<string[]>(
     props != null
       ? [urljoin(endpoint, '/v1/chain/get_currency_balance'), props]
       : null,

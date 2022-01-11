@@ -10,7 +10,7 @@ import { AccountNameProps } from '../typings/request'
  *
  * @param props `get_account` props.
  * @param endpoint RPC Endpoint api.
- * @returns GetAccountResult | null | undefined
+ * @returns GetAccountResult | undefined
  */
 const useGetAccount = (props?: AccountNameProps | null, endpoint?: string) => {
   const { endpoint: _endpoint } = useEOS()
@@ -19,7 +19,7 @@ const useGetAccount = (props?: AccountNameProps | null, endpoint?: string) => {
   // throw error if no endpoint set
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
 
-  const { data } = useSWR<GetAccountResult | null>(
+  const { data } = useSWR<GetAccountResult>(
     props != null ? [urljoin(endpoint, '/v1/chain/get_account'), props] : null,
     chainFetcher
   )

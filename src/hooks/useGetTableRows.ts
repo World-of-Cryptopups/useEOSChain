@@ -10,12 +10,12 @@ import { TableRowsProps } from '../typings/request'
  *
  * @param props `get_table_rows` props
  * @param endpoint RPC Endpoint api.
- * @returns T
+ * @returns GetTableRowsResult<T>
  */
 const useGetTableRows = <T>(
   props?: TableRowsProps | null,
   endpoint?: string
-): GetTableRowsResult<T> | null | undefined => {
+): GetTableRowsResult<T> | undefined => {
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 
