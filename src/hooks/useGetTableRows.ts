@@ -2,8 +2,8 @@ import useSWR from 'swr'
 import urljoin from 'url-join'
 import { useEOS } from '../component/provider'
 import chainFetcher from '../lib/fetcher'
+import { GetTableRowsResult } from '../typings/eosjs/eosjs-rpc-interfaces'
 import { TableRowsProps } from '../typings/request'
-import { FetchTableRowsResponseProps } from '../typings/rpc'
 
 /**
  * Fetches the rows from the specified table.
@@ -15,7 +15,7 @@ import { FetchTableRowsResponseProps } from '../typings/rpc'
 const useGetTableRows = <T>(
   props?: TableRowsProps,
   endpoint?: string
-): FetchTableRowsResponseProps<T> | null | undefined => {
+): GetTableRowsResult<T> | null | undefined => {
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 
@@ -37,7 +37,7 @@ const useGetTableRows = <T>(
     ...props
   }
 
-  const { data } = useSWR<FetchTableRowsResponseProps<T>>(
+  const { data } = useSWR<GetTableRowsResult<T>>(
     [urljoin(endpoint, '/v1/chain/get_table_rows'), body],
     chainFetcher
   )
