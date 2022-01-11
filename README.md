@@ -2,6 +2,8 @@
 
 Fetch data from EOS Chain API using React hooks.
 
+This wraps [`useSWR`](https://swr.vercel.app) to fetch requests to the chain api.
+
 ## Example Usage
 
 ```tsx
@@ -18,7 +20,7 @@ interface RAMSUPPLYBASE {
 }
 
 export default function GetChainComponent() {
-  const data = useGetTableRows<GETRAM>(
+  const { data } = useGetTableRows<GETRAM>(
     {
       code: 'eosio',
       scope: 'eosio',
