@@ -12,18 +12,15 @@ import { AccountNameProps } from '../typings/request'
  * @param endpoint RPC Endpoint api.
  * @returns GetAbiResult | null | undefined
  */
-const useGetABI = (props?: AccountNameProps, endpoint?: string) => {
+const useGetABI = (props?: AccountNameProps | null, endpoint?: string) => {
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 
   // throw error if no endpoint set
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
 
-  // if props is null / undefined, do not continue
-  if (props == null) return
-
   const { data } = useSWR<GetAbiResult | null>(
-    [urljoin(endpoint, '/v1/chain/get_abi'), props],
+    props != null ? [urljoin(endpoint, '/v1/chain/get_abi'), props] : null,
     chainFetcher
   )
 

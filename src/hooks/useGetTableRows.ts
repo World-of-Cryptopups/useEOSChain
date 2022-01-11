@@ -13,7 +13,7 @@ import { TableRowsProps } from '../typings/request'
  * @returns T
  */
 const useGetTableRows = <T>(
-  props?: TableRowsProps,
+  props?: TableRowsProps | null,
   endpoint?: string
 ): GetTableRowsResult<T> | null | undefined => {
   const { endpoint: _endpoint } = useEOS()
@@ -21,9 +21,6 @@ const useGetTableRows = <T>(
 
   // throw error if no endpoint set
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
-
-  // if props is null / undefined, do not continue
-  if (props == null) return
 
   const body: TableRowsProps = {
     json: true,
@@ -34,11 +31,13 @@ const useGetTableRows = <T>(
     lower_bound: '',
     upper_bound: '',
     key_type: '',
-    ...props
+    ...(props ?? { code: '', scope: '', table: '' })
   }
 
   const { data } = useSWR<GetTableRowsResult<T>>(
-    [urljoin(endpoint, '/v1/chain/get_table_rows'), body],
+    props != null
+      ? [urljoin(endpoint, '/v1/chain/get_table_rows'), body]
+      : null,
     chainFetcher
   )
 

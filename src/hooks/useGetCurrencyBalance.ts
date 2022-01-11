@@ -12,7 +12,7 @@ import { CurrencyBalanceProps } from '../typings/request'
  * @returns string[] | null | undefined
  */
 const useGetCurrencyBalance = (
-  props?: CurrencyBalanceProps,
+  props?: CurrencyBalanceProps | null,
   endpoint?: string
 ) => {
   const { endpoint: _endpoint } = useEOS()
@@ -21,11 +21,10 @@ const useGetCurrencyBalance = (
   // throw error if no endpoint set
   if (endpoint == null) throw new Error('RPC Endpoint not set.')
 
-  // if props is null / undefined, do not continue
-  if (props == null) return
-
   const { data } = useSWR<string[] | null>(
-    [urljoin(endpoint, '/v1/chain/get_currency_balance'), props],
+    props != null
+      ? [urljoin(endpoint, '/v1/chain/get_currency_balance'), props]
+      : null,
     chainFetcher
   )
 
