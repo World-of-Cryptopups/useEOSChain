@@ -11,7 +11,9 @@ describe('useGetInfo', () => {
 
     await waitForNextUpdate({ timeout: 5000 })
 
-    expect(result.current != null) // check if null
-    expect(result.current?.head_block_producer === 'eosdacserver') // should only be one since limit is defined
+    expect(result.current.data != null)
+    expect(!result.current.hasFailed)
+    expect(result.current.error == null)
+    expect(result.current.data?.head_block_producer === 'eosdacserver') // should only be one since limit is defined
   })
 })

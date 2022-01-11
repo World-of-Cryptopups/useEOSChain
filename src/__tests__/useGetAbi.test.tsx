@@ -17,7 +17,28 @@ describe('useGetABI', () => {
 
     await waitForNextUpdate({ timeout: 5000 })
 
-    expect(result.current != null) // check if null
-    expect(result.current?.account_name === 'eosio') // should only be one since limit is defined
+    expect(result.current.data != null)
+    expect(!result.current.hasFailed)
+    expect(result.current.error == null)
+    expect(result.current.data?.account_name === 'eosio') // should only be one since limit is defined
+  })
+
+  it('should fail to get the abi of an account', async () => {
+    const { result, waitForNextUpdate } = renderHook(
+      () =>
+        useGetABI(
+          {
+            account_name: 'eosioxxxx'
+          },
+          'https://waxtestnet.greymass.com'
+        ),
+      { wrapper: CustomWrapper }
+    )
+
+    await waitForNextUpdate({ timeout: 5000 })
+
+    expect(result.current.data == null)
+    expect(result.current.hasFailed)
+    expect(result.current.error != null)
   })
 })

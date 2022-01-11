@@ -1,21 +1,24 @@
 import useSWR from 'swr'
 import urljoin from 'url-join'
 import { useEOS } from '../component/provider'
+import ChainError from '../lib/error'
 import chainFetcher from '../lib/fetcher'
 import { GetTableRowsResult } from '../typings/eosjs/eosjs-rpc-interfaces'
+import { InternalServerErrorProps } from '../typings/error'
 import { TableRowsProps } from '../typings/request'
+import { ChainRequestResult } from '../typings/result'
 
 /**
  * Fetches the rows from the specified table.
  *
  * @param props `get_table_rows` props
  * @param endpoint RPC Endpoint api.
- * @returns GetTableRowsResult<T>
+ * @returns ChainRequestResult<GetTableRowsResult<T>>
  */
 const useGetTableRows = <T>(
   props?: TableRowsProps | null,
   endpoint?: string
-): GetTableRowsResult<T> | undefined => {
+): ChainRequestResult<GetTableRowsResult<T>> => {
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 
@@ -34,14 +37,21 @@ const useGetTableRows = <T>(
     ...(props ?? { code: '', scope: '', table: '' })
   }
 
-  const { data } = useSWR<GetTableRowsResult<T>>(
+  const { data, error } = useSWR<
+    GetTableRowsResult<T>,
+    ChainError<InternalServerErrorProps>
+  >(
     props != null
       ? [urljoin(endpoint, '/v1/chain/get_table_rows'), body]
       : null,
     chainFetcher
   )
 
-  return data
+  let hasFailed = false
+  if (error != null) {
+    hasFailed = true
+  }
+  return { data, hasFailed, error }
 }
 
 export default useGetTableRows
