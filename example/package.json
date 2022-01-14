@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@cryptopuppie/useeoschain": "file:../cryptopuppie-useeoschain-0.0.1.tgz",
+    "@cryptopuppie/useeoschain": "file:../cryptopuppie-useeoschain-0.1.2.tgz",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

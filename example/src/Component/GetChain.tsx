@@ -11,7 +11,7 @@ interface RAMSUPPLYBASE {
 }
 
 export default function GetChainComponent() {
-  const data = useGetTableRows<GETRAM>(
+  const { data } = useGetTableRows<GETRAM>(
     {
       code: 'eosio',
       scope: 'eosio',
@@ -22,7 +22,7 @@ export default function GetChainComponent() {
 
   return (
     <div style={{ marginTop: '20px', fontWeight: 'bold' }}>
-      {data?.rows[0].base.balance}
+      {JSON.stringify(data)}
     </div>
   )
 }
