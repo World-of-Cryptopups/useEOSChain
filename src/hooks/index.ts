@@ -1,3 +1,4 @@
+import useChainFetcher from './useChainFetcher'
 import useGetABI from './useGetAbi'
 import useGetAccount from './useGetAccount'
 import useGetCurrencyBalance from './useGetCurrencyBalance'
@@ -9,5 +10,6 @@ export {
   useGetCurrencyBalance,
   useGetTableRows,
   useGetInfo,
-  useGetABI
+  useGetABI,
+  useChainFetcher
 }
