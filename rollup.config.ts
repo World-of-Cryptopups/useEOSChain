@@ -30,7 +30,9 @@ export default {
       format: 'umd',
       globals: {
         react: 'React',
-        'cross-fetch': 'fetch'
+        'cross-fetch': 'fetch',
+        swr: 'useSWR',
+        'url-join': 'urljoin'
       }
     }
   ],
@@ -54,5 +56,5 @@ export default {
     analyze(),
     sourceMaps()
   ],
-  external: ['react', 'cross-fetch']
+  external: ['react', 'cross-fetch', 'swr', 'url-join']
 }
