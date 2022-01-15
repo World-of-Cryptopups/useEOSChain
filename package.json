@@ -1,7 +1,7 @@
 {
   "name": "@cryptopuppie/useeoschain",
   "version": "0.1.2",
-  "description": "Fetch data from EOS Chain API using React hooks.",
+  "description": "Fetch data from the EOS Chain API using React hooks.",
   "main": "./dist/index.js",
   "module": "./dist/index.modern.js",
   "unpkg": "./dist/index.umd.js",
@@ -26,8 +26,25 @@
     "prepublishOnly": "npm run build",
     "build": "cross-env NODE_ENV=production && rm -rf dist && rollup -c"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "eos",
+    "eos fetcher",
+    "eosio fetch",
+    "eosio chain",
+    "eosio"
+  ],
+  "author": {
+    "name": "World of Cryptopups Members",
+    "email": "iamcoderx@gmail.com",
+    "url": "https://www.worldofcryptopups.cf/"
+  },
+  "contributors": [
+    {
+      "name": "Joshue Abance",
+      "email": "euhsojlogro112002@gmail.com",
+      "url": "https://github.com/TheBoringDude"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
     "cross-fetch": "^3.1.4",
