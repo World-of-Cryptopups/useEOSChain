@@ -20,11 +20,10 @@
     "test:ci": "jest --ci --coverage --silent",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "huskyinstall": "husky install",
-    "precommit": "lint-staged",
     "prepack": "npm run build",
     "prepublishOnly": "npm run build",
-    "build": "cross-env NODE_ENV=production && rm -rf dist && rollup -c"
+    "build": "cross-env NODE_ENV=production && rm -rf dist && rollup -c",
+    "prepare": "husky install"
   },
   "keywords": [
     "eos",
