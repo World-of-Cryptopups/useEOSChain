@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext } from 'react'
+import { createContext, createElement, ReactNode, useContext } from 'react'
 
 interface UseEOSProviderProps {
   children: ReactNode
@@ -10,12 +10,15 @@ interface UseEOSContextProps {
 
 const UseEOSContext = createContext<UseEOSContextProps>({})
 
-const UseEOSProvider = ({ children, endpoint }: UseEOSProviderProps) => {
-  return (
-    <UseEOSContext.Provider value={{ endpoint }}>
-      {children}
-    </UseEOSContext.Provider>
-  )
+const UseEOSProvider = (props: UseEOSProviderProps) => {
+  const { endpoint } = props
+
+  return createElement(UseEOSContext.Provider, {
+    ...props,
+    value: {
+      endpoint
+    }
+  })
 }
 
 const useEOS = () => {

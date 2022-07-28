@@ -1,4 +1,5 @@
 .eslintrc
+.eslintcache
 *.config.ts
 *.config
 
