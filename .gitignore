@@ -9,3 +9,4 @@ dist
 example/package-lock.json
 
 coverage
+.eslintcache
