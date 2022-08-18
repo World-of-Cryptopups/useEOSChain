@@ -23,13 +23,17 @@ const useChainFetcher = <K, T = Record<string, any>>(
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 
-  // throw error if no endpoint set
-  if (endpoint == null) throw new Error('RPC Endpoint not set.')
-
   const { data, error } = useSWR<K, ChainError<InternalServerErrorProps>>(
-    props != null ? [urljoin(endpoint, uri), props] : null,
+    endpoint != null
+      ? props != null
+        ? [urljoin(endpoint, uri), props]
+        : null
+      : null,
     chainFetcher
   )
+
+  // throw error if no endpoint set
+  if (endpoint == null) throw new Error('RPC Endpoint not set.')
 
   let hasFailed = false
   if (error != null) {
