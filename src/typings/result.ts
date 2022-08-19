@@ -6,3 +6,8 @@ export interface ChainRequestResult<T> {
   hasFailed: boolean
   error?: ChainError<InternalServerErrorProps>
 }
+
+export interface BaseOptionsProps<T = any> {
+  endpoint?: string
+  initialData: T
+}

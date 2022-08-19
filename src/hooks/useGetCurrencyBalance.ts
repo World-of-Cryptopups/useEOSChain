@@ -1,5 +1,5 @@
 import { CurrencyBalanceProps } from '../typings/request'
-import { ChainRequestResult } from '../typings/result'
+import { BaseOptionsProps, ChainRequestResult } from '../typings/result'
 import useChainFetcher from './useChainFetcher'
 
 /**
@@ -7,18 +7,17 @@ import useChainFetcher from './useChainFetcher'
  * Implementation for `/get_currency_balance`
  *
  * @param props `get_currency_balance` props.
- * @param endpoint RPC Endpoint api.
+ * @param options custom fetch options
  * @returns ChainRequestResult<string[]>
  */
 const useGetCurrencyBalance = (
   props?: CurrencyBalanceProps | null,
-  endpoint?: string
+  options?: BaseOptionsProps<string[]>
 ): ChainRequestResult<string[]> => {
-  return useChainFetcher<string[]>(
-    props,
-    '/v1/chain/get_currency_balance',
-    endpoint
-  )
+  return useChainFetcher<string[]>(props, {
+    uri: '/v1/chain/get_currency_balance',
+    ...options
+  })
 }
 
 export default useGetCurrencyBalance

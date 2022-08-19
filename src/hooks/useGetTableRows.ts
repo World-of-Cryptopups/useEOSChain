@@ -1,6 +1,6 @@
 import { GetTableRowsResult } from '../typings/eosjs/eosjs-rpc-interfaces'
 import { TableRowsProps } from '../typings/request'
-import { ChainRequestResult } from '../typings/result'
+import { BaseOptionsProps, ChainRequestResult } from '../typings/result'
 import useChainFetcher from './useChainFetcher'
 
 /**
@@ -8,12 +8,12 @@ import useChainFetcher from './useChainFetcher'
  * Implementation for `/get_table_rows`
  *
  * @param props `get_table_rows` props
- * @param endpoint RPC Endpoint api.
+ * @param options custom fetch options
  * @returns ChainRequestResult<GetTableRowsResult<T>>
  */
 const useGetTableRows = <T>(
   props?: TableRowsProps | null,
-  endpoint?: string
+  options?: BaseOptionsProps<GetTableRowsResult<T>>
 ): ChainRequestResult<GetTableRowsResult<T>> => {
   const body: TableRowsProps = {
     json: true,
@@ -27,11 +27,10 @@ const useGetTableRows = <T>(
     ...(props ?? { code: '', scope: '', table: '' })
   }
 
-  return useChainFetcher<GetTableRowsResult<T>>(
-    props != null ? body : null,
-    '/v1/chain/get_table_rows',
-    endpoint
-  )
+  return useChainFetcher<GetTableRowsResult<T>>(props != null ? body : null, {
+    uri: '/v1/chain/get_table_rows',
+    ...options
+  })
 }
 
 export default useGetTableRows

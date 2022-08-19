@@ -1,6 +1,6 @@
 import { GetAbiResult } from '../typings/eosjs/eosjs-rpc-interfaces'
 import { AccountNameProps } from '../typings/request'
-import { ChainRequestResult } from '../typings/result'
+import { BaseOptionsProps, ChainRequestResult } from '../typings/result'
 import useChainFetcher from './useChainFetcher'
 
 /**
@@ -8,14 +8,17 @@ import useChainFetcher from './useChainFetcher'
  * Implementation for `/get_abi`
  *
  * @param props `get_abi` props
- * @param endpoint RPC Endpoint api.
+ * @param options custom fetch options
  * @returns ChainRequestResult<GetAbiResult>
  */
 const useGetABI = (
   props?: AccountNameProps | null,
-  endpoint?: string
+  options?: BaseOptionsProps<GetAbiResult>
 ): ChainRequestResult<GetAbiResult> => {
-  return useChainFetcher<GetAbiResult>(props, '/v1/chain/get_abi', endpoint)
+  return useChainFetcher<GetAbiResult>(props, {
+    uri: '/v1/chain/get_abi',
+    ...options
+  })
 }
 
 export default useGetABI

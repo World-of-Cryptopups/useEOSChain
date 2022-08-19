@@ -23,7 +23,9 @@ The hooks are made to mimic the usage of **useSWR**
     const { data } = useGetCurrencyBalance(
       { account: 'myeosioaccount', code: 'eosio.token' },
       // if the endpoint is not set (also not set in provider) it will throw an error
-      'https://waxtestnet.greymass.com'
+      {
+        endpoint: 'https://waxtestnet.greymass.com'
+      }
     )
 
     return (
@@ -73,7 +75,9 @@ The hooks are made to mimic the usage of **useSWR**
   export default function Component() {
     const { data, error, hasFailed } = useGetCurrencyBalance(
       { account: 'myeosioaccount', code: 'eosio.token' },
-      'https://waxtestnet.greymass.com'
+      {
+        endpoint: 'https://waxtestnet.greymass.com'
+      }
     )
 
     if (hasFailed) {
@@ -112,7 +116,11 @@ export default function App() {
     code_as_wasm: true
   }
 
-  const { data } = useChainFetcher<GetCodeResult>(props, '/v1/chain/get_code', endpoint)
+  const { data } = useChainFetcher<GetCodeResult>(
+    props,
+    '/v1/chain/get_code',
+    endpoint
+  )
 
   return <div>{JSON.stringify(data)}</div>
 }

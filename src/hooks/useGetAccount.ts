@@ -1,6 +1,6 @@
 import { GetAccountResult } from '../typings/eosjs/eosjs-rpc-interfaces'
 import { AccountNameProps } from '../typings/request'
-import { ChainRequestResult } from '../typings/result'
+import { BaseOptionsProps, ChainRequestResult } from '../typings/result'
 import useChainFetcher from './useChainFetcher'
 
 /**
@@ -8,14 +8,17 @@ import useChainFetcher from './useChainFetcher'
  * Implementation for `/get_account`
  *
  * @param props `get_account` props.
- * @param endpoint RPC Endpoint api.
+ * @param options custom fetch options
  * @returns ChainRequestResult<GetAccountResult>
  */
 const useGetAccount = (
   props?: AccountNameProps | null,
-  endpoint?: string
+  options?: BaseOptionsProps<GetAccountResult>
 ): ChainRequestResult<GetAccountResult> => {
-  return useChainFetcher(props, '/v1/chain/get_account', endpoint)
+  return useChainFetcher(props, {
+    uri: '/v1/chain/get_account',
+    ...options
+  })
 }
 
 export default useGetAccount

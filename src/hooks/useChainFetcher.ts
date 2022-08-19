@@ -6,6 +6,12 @@ import chainFetcher from '../lib/fetcher'
 import { InternalServerErrorProps } from '../typings/error'
 import { ChainRequestResult } from '../typings/result'
 
+interface useChainFetcherOptions<T = any> {
+  uri: string
+  endpoint?: string
+  initialData?: T
+}
+
 /**
  * Custom request hook for send request to custom chain url apis.
  *
@@ -17,9 +23,10 @@ import { ChainRequestResult } from '../typings/result'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useChainFetcher = <K, T = Record<string, any>>(
   props: T | null | undefined,
-  uri: string,
-  endpoint?: string
+  options: useChainFetcherOptions<K>
 ): ChainRequestResult<K> => {
+  let { uri, endpoint, initialData } = options
+
   const { endpoint: _endpoint } = useEOS()
   endpoint = endpoint != null ? endpoint : _endpoint
 
@@ -29,7 +36,10 @@ const useChainFetcher = <K, T = Record<string, any>>(
         ? [urljoin(endpoint, uri), props]
         : null
       : null,
-    chainFetcher
+    chainFetcher,
+    {
+      fallbackData: initialData
+    }
   )
 
   // throw error if no endpoint set
